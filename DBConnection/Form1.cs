@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Common;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 
 namespace DBConnection
 {
@@ -19,7 +20,7 @@ namespace DBConnection
             InitializeComponent();
         }
 
-        OleDbConnection connection1 = new OleDbConnection();
+        OleDbConnection connection1 = new OleDbConnection(); // its better to wrap in using operator
         string testConnect = @"Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=ApressFinancial;Data Source=DESKTOP-4A84H8M\SQLEXPRESS";
 
         private void MenuItemDBConnect_Click(object sender, EventArgs e)
@@ -35,9 +36,17 @@ namespace DBConnection
                 else
                     MessageBox.Show("Connection to database is already active");
             }
-            catch
+            catch (OleDbException XcpSQL)
             {
-                MessageBox.Show("Failed to connect to database");
+                foreach (OleDbError se in XcpSQL.Errors)
+                {
+                    MessageBox.Show(se.Message, "SQL Error code " + se.NativeError, 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception Xcp)
+            {
+                MessageBox.Show(Xcp.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
