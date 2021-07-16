@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBConnection", "DBConnection\DBConnection.csproj", "{621A7C64-6FE0-448C-8396-30C3D6BD5F61}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleADOTester", "ConsoleADOTester\ConsoleADOTester.csproj", "{19F0F3AD-D47E-4BC5-8C45-7B9A23C1F7C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{621A7C64-6FE0-448C-8396-30C3D6BD5F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{621A7C64-6FE0-448C-8396-30C3D6BD5F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{621A7C64-6FE0-448C-8396-30C3D6BD5F61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19F0F3AD-D47E-4BC5-8C45-7B9A23C1F7C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19F0F3AD-D47E-4BC5-8C45-7B9A23C1F7C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19F0F3AD-D47E-4BC5-8C45-7B9A23C1F7C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19F0F3AD-D47E-4BC5-8C45-7B9A23C1F7C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
