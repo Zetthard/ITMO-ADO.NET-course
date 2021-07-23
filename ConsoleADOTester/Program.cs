@@ -13,7 +13,7 @@ namespace ConsoleADOTester
     {
         static void Main(string[] args)
         {
-            string connectionStr = "Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=ApressFinancial;Data Source=(local)";
+            string connectionStr = @"Server=DESKTOP-4A84H8M\SQLEXPRESS; Integrated Security=true; Initial Catalog=ApressFinancial;";
 
             // 1
             using (SqlConnection connect = new SqlConnection(connectionStr))
@@ -21,14 +21,14 @@ namespace ConsoleADOTester
                 connect.Open();
 
                 // 2
-                using (SqlCommand cmd = new SqlCommand("SELECT [ID],[Name],[Age] FROM [dbo].[Students] ORDER BY Name", connect))
+                using (SqlCommand cmd = new SqlCommand("SELECT [CustomerId],[CustomerFirstName],[CustomerLastName] FROM [CustomerDetails].[Customers] ORDER BY CustomerId", connect))
                 {
                     // 3
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            Console.WriteLine(reader["ID"] + " " + reader["Name"] + " " + reader["Age"]);
+                            Console.WriteLine(reader["CustomerId"] + " " + reader["CustomerFirstName"] + " " + reader["CustomerLastName"]);
                         }
                     }
                 }
