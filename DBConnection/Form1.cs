@@ -37,7 +37,7 @@ namespace DBConnection
 
         string testConnect = GetConnectionStringByName("DBConnect.ApressConnectionString");
 
-        private void MenuItemDBConnect_Click(object sender, EventArgs e)
+        private void CreateConnection()
         {
             try
             {
@@ -54,7 +54,7 @@ namespace DBConnection
             {
                 foreach (OleDbError se in XcpSQL.Errors)
                 {
-                    MessageBox.Show(se.Message, "SQL Error code " + se.NativeError, 
+                    MessageBox.Show(se.Message, "SQL Error code " + se.NativeError,
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -62,6 +62,11 @@ namespace DBConnection
             {
                 MessageBox.Show(Xcp.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void MenuItemDBConnect_Click(object sender, EventArgs e)
+        {
+            CreateConnection();
         }
 
         private void MenuItemDBDisconnect_Click(object sender, EventArgs e)
@@ -97,6 +102,74 @@ namespace DBConnection
                     MessageBox.Show("connectionString = " + css.ConnectionString);
                 }
             }
+        }
+
+        private void buttonQty_Click(object sender, EventArgs e)
+        {
+            if (connection1.State == ConnectionState.Closed)
+            {
+                MessageBox.Show("Please connect to Database first");
+                return;
+            }
+
+            OleDbCommand cmdQty = new OleDbCommand();
+            cmdQty.Connection = connection1;
+            cmdQty.CommandText = "SELECT count(*) FROM CustomerDetails.FinancialProducts";
+            int productQty = (int)cmdQty.ExecuteScalar();
+            labelQty.Text = productQty.ToString();
+        }
+
+        private void buttonList_Click(object sender, EventArgs e)
+        {
+            if (connection1.State == ConnectionState.Closed)
+            {
+                MessageBox.Show("Please connect to Database first");
+                return;
+            }
+
+            OleDbCommand cmdList = connection1.CreateCommand();
+            cmdList.CommandText = "SELECT ProductName FROM CustomerDetails.FinancialProducts";
+            OleDbDataReader reader = cmdList.ExecuteReader();
+
+            while (reader.Read())
+                listViewProducts.Items.Add(reader["ProductName"].ToString());
+        }
+
+        private void buttonTran_Click(object sender, EventArgs e)
+        {
+            CreateConnection();
+            OleDbTransaction OleTran = connection1.BeginTransaction();
+            OleDbCommand cmdTran = connection1.CreateCommand();
+            cmdTran.Transaction = OleTran;
+
+            try
+            {
+                cmdTran.CommandText = "INSERT INTO CustomerDetails.FinancialProducts (ProductId, ProductName) " +
+                    "VALUES(6, 'blank fp_2')";
+                cmdTran.ExecuteNonQuery();
+                cmdTran.CommandText = "INSERT INTO CustomerDetails.FinancialProducts (ProductId, ProductName) " +
+                    "VALUES(7, 'blank fp_3')";
+                cmdTran.ExecuteNonQuery();
+                OleTran.Commit();
+                MessageBox.Show("Both records were written to Database");
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message);
+                try
+                {
+                    OleTran.Rollback();
+                }
+                catch (Exception exRollback)
+                {
+                    MessageBox.Show(exRollback.Message);
+                }
+            }
+        }
+
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            listViewProducts.Items.Clear();
         }
     }
 }
