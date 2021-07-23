@@ -31,19 +31,21 @@ namespace DBConnection
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.MenuItemDB = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuItemDBDisconnect = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemDBConnect = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemDBDisconnect = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemConnectionsList = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemDB});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 40);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 42);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -51,10 +53,18 @@ namespace DBConnection
             // 
             this.MenuItemDB.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemDBConnect,
-            this.MenuItemDBDisconnect});
+            this.MenuItemDBDisconnect,
+            this.MenuItemConnectionsList});
             this.MenuItemDB.Name = "MenuItemDB";
-            this.MenuItemDB.Size = new System.Drawing.Size(192, 36);
+            this.MenuItemDB.Size = new System.Drawing.Size(192, 38);
             this.MenuItemDB.Text = "DB connection";
+            // 
+            // MenuItemDBConnect
+            // 
+            this.MenuItemDBConnect.Name = "MenuItemDBConnect";
+            this.MenuItemDBConnect.Size = new System.Drawing.Size(359, 44);
+            this.MenuItemDBConnect.Text = "Connect";
+            this.MenuItemDBConnect.Click += new System.EventHandler(this.MenuItemDBConnect_Click);
             // 
             // MenuItemDBDisconnect
             // 
@@ -63,12 +73,12 @@ namespace DBConnection
             this.MenuItemDBDisconnect.Text = "Disconnect";
             this.MenuItemDBDisconnect.Click += new System.EventHandler(this.MenuItemDBDisconnect_Click);
             // 
-            // MenuItemDBConnect
+            // MenuItemConnectionsList
             // 
-            this.MenuItemDBConnect.Name = "MenuItemDBConnect";
-            this.MenuItemDBConnect.Size = new System.Drawing.Size(359, 44);
-            this.MenuItemDBConnect.Text = "Connect";
-            this.MenuItemDBConnect.Click += new System.EventHandler(this.MenuItemDBConnect_Click);
+            this.MenuItemConnectionsList.Name = "MenuItemConnectionsList";
+            this.MenuItemConnectionsList.Size = new System.Drawing.Size(359, 44);
+            this.MenuItemConnectionsList.Text = "List of connections";
+            this.MenuItemConnectionsList.Click += new System.EventHandler(this.MenuItemConnectionsList_Click);
             // 
             // Form1
             // 
@@ -92,6 +102,7 @@ namespace DBConnection
         private System.Windows.Forms.ToolStripMenuItem MenuItemDB;
         private System.Windows.Forms.ToolStripMenuItem MenuItemDBDisconnect;
         private System.Windows.Forms.ToolStripMenuItem MenuItemDBConnect;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemConnectionsList;
     }
 }
 
