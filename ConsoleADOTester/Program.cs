@@ -13,7 +13,7 @@ namespace ConsoleADOTester
     {
         static void Main(string[] args)
         {
-            string connectionStr = @"Server=DESKTOP-4A84H8M\SQLEXPRESS; Integrated Security=true; Initial Catalog=ApressFinancial;";
+            string connectionStr = @"Server=(local); Integrated Security=true; Initial Catalog=ApressFinancial;";
 
             // 1
             using (SqlConnection connect = new SqlConnection(connectionStr))

@@ -22,9 +22,7 @@ namespace DBConnection
             this.connection1.StateChange += new StateChangeEventHandler(this.connection_StateChange);
         }
 
-        OleDbConnection connection1 = new OleDbConnection(); // its better to wrap in using operator
-        // string testConnect = @"Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=ApressFinancial;Data Source=DESKTOP-4A84H8M\SQLEXPRESS";
-
+        OleDbConnection connection1 = new OleDbConnection();
         static string GetConnectionStringByName(string name)
         {
             string returnValue = null;
@@ -80,7 +78,7 @@ namespace DBConnection
                 MessageBox.Show("Connection to database is already closed");
         }
 
-        private void connection_StateChange(object sender, System.Data.StateChangeEventArgs e)
+        private void connection_StateChange(object sender, StateChangeEventArgs e)
         {
             MenuItemDBConnect.Enabled =
                 (e.CurrentState == ConnectionState.Closed);

@@ -19,7 +19,7 @@ namespace DataAdapterProgram
         }
 
         private SqlConnection apressConnection = 
-            new SqlConnection(@"Data Source=DESKTOP-4A84H8M\SQLEXPRESS;Initial Catalog=ApressFinancial;Integrated Security=True");
+            new SqlConnection(@"Data Source=(local);Initial Catalog=ApressFinancial;Integrated Security=True");
 
         private SqlDataAdapter sqlDataAdapter1;
         private DataSet apFinDataSet = new DataSet("ApressFinancial");
