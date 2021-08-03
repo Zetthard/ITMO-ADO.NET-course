@@ -17,10 +17,11 @@ namespace CustomerManager
         public CustomerViewer()
         {
             InitializeComponent();
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SampleContext>());
         }
 
         SampleContext context = new SampleContext();
-
+        
         byte[] photo;
 
         private void buttonAddData_Click(object sender, EventArgs e)
@@ -29,7 +30,8 @@ namespace CustomerManager
             {
                 Customer customer = new Customer
                 {
-                    Name = textBoxFirstName.Text, // + " " + textBoxLastName.Text
+                    FirstName = textBoxFirstName.Text, 
+                    LastName = textBoxLastName.Text,
                     Email = textBoxAddress.Text,
                     Age = Int32.Parse(textBoxAge.Text),
                     Photo = photo,
@@ -73,7 +75,7 @@ namespace CustomerManager
         {
             Output();
             var query = from b in context.Customers
-                        orderby b.Name
+                        orderby b.LastName
                         select b;
             comboBoxCustomerList.DataSource = query.ToList();
             listBoxOrderList.DataSource = context.Orders.ToList();
@@ -84,6 +86,57 @@ namespace CustomerManager
             context.Orders.Add(new Order { ProductName = "Аудио", Quantity = 12, PurchaseDate = DateTime.Parse("12.01.2016") });
             context.Orders.Add(new Order { ProductName = "Видео", Quantity = 22, PurchaseDate = DateTime.Parse("10.01.2016") });
             context.SaveChanges();
+        }
+
+        private void dataGridViewData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewData.CurrentRow == null)
+                return;
+            var customer = dataGridViewData.CurrentRow.DataBoundItem as Customer;
+            if (customer == null)
+                return;
+
+            labelId.Text = Convert.ToString(customer.CustomerId);
+            textBoxCustomerId.Text = customer.ToString();
+            textBoxFirstName.Text = customer.FirstName;
+            textBoxLastName.Text = customer.LastName;
+            textBoxAddress.Text = customer.Email;
+            textBoxAge.Text = Convert.ToString(customer.Age);
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            if (labelId.Text == String.Empty)
+                return;
+            var id = Convert.ToInt32(labelId.Text);
+            var customer = context.Customers.Find(id);
+            if (customer == null)
+                return;
+            customer.FirstName = textBoxFirstName.Text;
+            customer.LastName = textBoxLastName.Text;
+            customer.Email = textBoxAddress.Text;
+            customer.Age = int.Parse(textBoxAge.Text);
+            context.Entry(customer).State = EntityState.Modified;
+            context.SaveChanges();
+            Output();
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (labelId.Text == String.Empty)
+                return;
+            var id = Convert.ToInt32(labelId.Text);
+            var customer = context.Customers.Find(id);
+            if (customer == null)
+                return;
+
+            context.Entry(customer).State = EntityState.Deleted;
+            context.SaveChanges();
+            textBoxFirstName.Text = String.Empty;
+            textBoxLastName.Text = String.Empty;
+            textBoxAddress.Text = String.Empty;
+            textBoxAge.Text = String.Empty;
+            Output();
         }
     }
 }

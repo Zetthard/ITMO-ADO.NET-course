@@ -46,10 +46,10 @@ namespace CustomerManager
             this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBoxCustomerId = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.radioButtonCustomers = new System.Windows.Forms.RadioButton();
             this.radioButtonOrders = new System.Windows.Forms.RadioButton();
+            this.radioButtonCustomers = new System.Windows.Forms.RadioButton();
+            this.textBoxCustomerId = new System.Windows.Forms.TextBox();
+            this.labelId = new System.Windows.Forms.Label();
             this.dataGridViewData = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewData)).BeginInit();
@@ -183,6 +183,7 @@ namespace CustomerManager
             this.buttonEdit.TabIndex = 14;
             this.buttonEdit.Text = "Редактировать";
             this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // buttonDelete
             // 
@@ -192,6 +193,7 @@ namespace CustomerManager
             this.buttonDelete.TabIndex = 15;
             this.buttonDelete.Text = "Удалить";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // groupBox1
             // 
@@ -204,6 +206,28 @@ namespace CustomerManager
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Выбор данных";
             // 
+            // radioButtonOrders
+            // 
+            this.radioButtonOrders.AutoSize = true;
+            this.radioButtonOrders.Location = new System.Drawing.Point(315, 37);
+            this.radioButtonOrders.Name = "radioButtonOrders";
+            this.radioButtonOrders.Size = new System.Drawing.Size(108, 29);
+            this.radioButtonOrders.TabIndex = 1;
+            this.radioButtonOrders.TabStop = true;
+            this.radioButtonOrders.Text = "Orders";
+            this.radioButtonOrders.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonCustomers
+            // 
+            this.radioButtonCustomers.AutoSize = true;
+            this.radioButtonCustomers.Location = new System.Drawing.Point(47, 37);
+            this.radioButtonCustomers.Name = "radioButtonCustomers";
+            this.radioButtonCustomers.Size = new System.Drawing.Size(146, 29);
+            this.radioButtonCustomers.TabIndex = 0;
+            this.radioButtonCustomers.TabStop = true;
+            this.radioButtonCustomers.Text = "Customers";
+            this.radioButtonCustomers.UseVisualStyleBackColor = true;
+            // 
             // textBoxCustomerId
             // 
             this.textBoxCustomerId.Location = new System.Drawing.Point(774, 235);
@@ -211,36 +235,14 @@ namespace CustomerManager
             this.textBoxCustomerId.Size = new System.Drawing.Size(467, 31);
             this.textBoxCustomerId.TabIndex = 17;
             // 
-            // label6
+            // labelId
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(716, 239);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(32, 25);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "ID";
-            // 
-            // radioButtonCustomers
-            // 
-            this.radioButtonCustomers.AutoSize = true;
-            this.radioButtonCustomers.Location = new System.Drawing.Point(47, 37);
-            this.radioButtonCustomers.Name = "radioButtonCustomers";
-            this.radioButtonCustomers.Size = new System.Drawing.Size(234, 46);
-            this.radioButtonCustomers.TabIndex = 0;
-            this.radioButtonCustomers.TabStop = true;
-            this.radioButtonCustomers.Text = "Customers";
-            this.radioButtonCustomers.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonOrders
-            // 
-            this.radioButtonOrders.AutoSize = true;
-            this.radioButtonOrders.Location = new System.Drawing.Point(315, 37);
-            this.radioButtonOrders.Name = "radioButtonOrders";
-            this.radioButtonOrders.Size = new System.Drawing.Size(173, 46);
-            this.radioButtonOrders.TabIndex = 1;
-            this.radioButtonOrders.TabStop = true;
-            this.radioButtonOrders.Text = "Orders";
-            this.radioButtonOrders.UseVisualStyleBackColor = true;
+            this.labelId.AutoSize = true;
+            this.labelId.Location = new System.Drawing.Point(716, 239);
+            this.labelId.Name = "labelId";
+            this.labelId.Size = new System.Drawing.Size(32, 25);
+            this.labelId.TabIndex = 18;
+            this.labelId.Text = "ID";
             // 
             // dataGridViewData
             // 
@@ -252,6 +254,7 @@ namespace CustomerManager
             this.dataGridViewData.RowTemplate.Height = 33;
             this.dataGridViewData.Size = new System.Drawing.Size(1254, 459);
             this.dataGridViewData.TabIndex = 19;
+            this.dataGridViewData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewData_CellClick);
             // 
             // CustomerViewer
             // 
@@ -259,7 +262,7 @@ namespace CustomerManager
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1254, 746);
             this.Controls.Add(this.dataGridViewData);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.labelId);
             this.Controls.Add(this.textBoxCustomerId);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonDelete);
@@ -311,7 +314,7 @@ namespace CustomerManager
         private System.Windows.Forms.RadioButton radioButtonOrders;
         private System.Windows.Forms.RadioButton radioButtonCustomers;
         private System.Windows.Forms.TextBox textBoxCustomerId;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelId;
         private System.Windows.Forms.DataGridView dataGridViewData;
     }
 }
