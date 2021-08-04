@@ -51,6 +51,7 @@ namespace CustomerManager
             this.textBoxCustomerId = new System.Windows.Forms.TextBox();
             this.labelId = new System.Windows.Forms.Label();
             this.dataGridViewData = new System.Windows.Forms.DataGridView();
+            this.radioButtonVipOrder = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewData)).BeginInit();
             this.SuspendLayout();
@@ -197,6 +198,7 @@ namespace CustomerManager
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.radioButtonVipOrder);
             this.groupBox1.Controls.Add(this.radioButtonOrders);
             this.groupBox1.Controls.Add(this.radioButtonCustomers);
             this.groupBox1.Location = new System.Drawing.Point(707, 139);
@@ -209,7 +211,7 @@ namespace CustomerManager
             // radioButtonOrders
             // 
             this.radioButtonOrders.AutoSize = true;
-            this.radioButtonOrders.Location = new System.Drawing.Point(315, 37);
+            this.radioButtonOrders.Location = new System.Drawing.Point(251, 37);
             this.radioButtonOrders.Name = "radioButtonOrders";
             this.radioButtonOrders.Size = new System.Drawing.Size(108, 29);
             this.radioButtonOrders.TabIndex = 1;
@@ -220,7 +222,7 @@ namespace CustomerManager
             // radioButtonCustomers
             // 
             this.radioButtonCustomers.AutoSize = true;
-            this.radioButtonCustomers.Location = new System.Drawing.Point(47, 37);
+            this.radioButtonCustomers.Location = new System.Drawing.Point(38, 37);
             this.radioButtonCustomers.Name = "radioButtonCustomers";
             this.radioButtonCustomers.Size = new System.Drawing.Size(146, 29);
             this.radioButtonCustomers.TabIndex = 0;
@@ -255,6 +257,17 @@ namespace CustomerManager
             this.dataGridViewData.Size = new System.Drawing.Size(1254, 459);
             this.dataGridViewData.TabIndex = 19;
             this.dataGridViewData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewData_CellClick);
+            // 
+            // radioButtonVipOrder
+            // 
+            this.radioButtonVipOrder.AutoSize = true;
+            this.radioButtonVipOrder.Location = new System.Drawing.Point(388, 37);
+            this.radioButtonVipOrder.Name = "radioButtonVipOrder";
+            this.radioButtonVipOrder.Size = new System.Drawing.Size(145, 29);
+            this.radioButtonVipOrder.TabIndex = 2;
+            this.radioButtonVipOrder.TabStop = true;
+            this.radioButtonVipOrder.Text = "Vip Orders";
+            this.radioButtonVipOrder.UseVisualStyleBackColor = true;
             // 
             // CustomerViewer
             // 
@@ -316,6 +329,7 @@ namespace CustomerManager
         private System.Windows.Forms.TextBox textBoxCustomerId;
         private System.Windows.Forms.Label labelId;
         private System.Windows.Forms.DataGridView dataGridViewData;
+        private System.Windows.Forms.RadioButton radioButtonVipOrder;
     }
 }
 

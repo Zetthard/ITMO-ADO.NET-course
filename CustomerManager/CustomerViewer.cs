@@ -14,15 +14,16 @@ namespace CustomerManager
 {
     public partial class CustomerViewer : Form
     {
+        SampleContext context;
+
+        byte[] photo;
+
         public CustomerViewer()
         {
             InitializeComponent();
-            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SampleContext>());
+            context = new SampleContext();
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SampleContext>());
         }
-
-        SampleContext context = new SampleContext();
-        
-        byte[] photo;
 
         private void buttonAddData_Click(object sender, EventArgs e)
         {
@@ -67,6 +68,8 @@ namespace CustomerManager
         {
             if (radioButtonCustomers.Checked == true)
                 dataGridViewData.DataSource = context.Customers.ToList();
+            else if (radioButtonVipOrder.Checked == true)
+                dataGridViewData.DataSource = context.VipOrders.ToList();
             else if (radioButtonOrders.Checked == true)
                 dataGridViewData.DataSource = context.Orders.ToList();
         }
@@ -85,6 +88,7 @@ namespace CustomerManager
         {
             context.Orders.Add(new Order { ProductName = "Аудио", Quantity = 12, PurchaseDate = DateTime.Parse("12.01.2016") });
             context.Orders.Add(new Order { ProductName = "Видео", Quantity = 22, PurchaseDate = DateTime.Parse("10.01.2016") });
+            context.VipOrders.Add(new VipOrder { ProductName = "Авто", Quantity = 101, PurchaseDate = DateTime.Parse("11.01.2016"), status = "высокий" });
             context.SaveChanges();
         }
 
