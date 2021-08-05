@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.Entity;
-using System.Data.Objects;
-using System.Data.Objects.DataClasses;
-using System.Data.Entity.Infrastructure;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -31,8 +27,7 @@ namespace CourseManager
             try
             {
                 comboBoxDepartmentList.DisplayMember = "Name";
-                comboBoxDepartmentList.DataSource = departmentQuery.ToList(); //((ObjectQuery)departmentQuery).Execute(MergeOption.AppendOnly);
-                
+                comboBoxDepartmentList.DataSource = departmentQuery.ToList();
             }
             catch (Exception ex)
             {
